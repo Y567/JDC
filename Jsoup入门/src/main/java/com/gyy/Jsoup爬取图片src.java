@@ -22,7 +22,5 @@ public class Jsoup爬取图片src {
         for (Element img : imgs) {
             System.out.println(img.attr("alt")+" "+img.attr("src"));
         }
-
-
     }
 }
