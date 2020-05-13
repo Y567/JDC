@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>V-for</title>
+
+    <!--1.导入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <!--试试v-for语句-->
+    <li v-for="item in items">
+        {{item.say}}
+    </li>
+</div>
+
+<script>
+    // 绑定一个div
+    let vue = new Vue({
+        el: "#app",
+        data:{
+        items: [
+                {
+                    say: "阿狗你睡了嘛"
+                },
+                {
+                    say: "小强作业"
+                }
+            ]
+    }
+    }
+    )
+</script>
+</body>
+</html>
