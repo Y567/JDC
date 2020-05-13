@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>V-for</title>
@@ -9,8 +9,11 @@
 </head>
 <body>
 
+
 <div id="app">
 
+    <!--v-bind鼠标悬浮后显示的数据-->
+    <h3 v-bind:title="message">啦啦啦</h3>
     <!--试试v-for语句-->
     <li v-for="item in items">
         {{item.say}}
@@ -22,6 +25,7 @@
     let vue = new Vue({
         el: "#app",
         data:{
+            message: "怎么样",
         items: [
                 {
                     say: "阿狗你睡了嘛"
