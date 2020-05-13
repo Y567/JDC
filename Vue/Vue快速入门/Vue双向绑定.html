@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue双向绑定</title>
+    <!--1.导入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+
+    <!--试试Vue双向绑定-->
+    <select value="" v-model="message">
+        <option value="" disabled>--请选择--</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+
+    选中了{{message}}
+</div>
+
+<script>
+    // 绑定一个div
+    let vue = new Vue({
+            el: "#app",
+            data:{
+                message: "",
+            }
+        }
+    )
+</script>
+</body>
+</html>
