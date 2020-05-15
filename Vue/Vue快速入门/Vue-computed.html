@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <!--1.导入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{test1}}
+</div>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        //方法也可以做到计算,但是不会有缓存,methods和computed里面的方法不能重名,重名的话如果methods在上面就会走methods,不是在上面的话就会报错
+        methods: {
+            test: function () {
+                return new Date().getMilliseconds();
+            }
+        },
+        //计算属性拥有缓存,可以减少系统开销
+        computed: {
+            test1: function () {
+                return new Date().getMilliseconds();
+            }
+        }
+    });
+</script>
+</body>
+</html>
