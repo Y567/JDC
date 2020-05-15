@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios通信</title>
+    <!--1.导入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--2.导入axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--3.解决闪烁-->
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-clock>
+    {{info.name}}
+</div>
+
+<script>
+    var vm = new Vue({
+       el: "#app",
+        // 这种方式也可以取到数据,小狂神的那种也行
+       /*data: {
+           ag: null
+       },*/
+
+       data(){
+           return {
+               //这个info随便起名字
+               info: null
+           }
+       },
+        mounted: function () {
+            //钩子函数,用来发送异步请求,将response的数据弹出来
+            // axios.get("data.json").then(response=>(this.ag = response.data));
+            axios.get("data.json").then(response=>(this.info = response.data));
+        }
+    });
+</script>
+</body>
+</html>
