@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <!--1.导入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <todo>
+        <!--这里的slot绑定的是todo组件中的,在我们的div app下可以直接引用data里的数据-->
+        <diy-title slot="diy-title" :title="title"></diy-title>
+        <!--这里我们可以调用vue的方法,将其绑定给组件即可,因为组件不能直接调用vue的方法,这里一定得要@-->
+        <diy-item slot="diy-item" v-for="(i,index) in items" :item="i" :i="index" @remove="removeItems(index)"></diy-item>
+    </todo>
+
+</div>
+
+<script>
+
+    //待办事项,这个slot相当于一个占位符
+    Vue.component("todo",{
+        template: "<div>" +
+            "<slot name='diy-title'></slot>" +    //这里是要插入插槽的组件,name表示插槽的名字也是组件的名字
+            "<ul>" +
+            "<slot name='diy-item'></slot>" +     //这里是要插入插槽的组件
+            "</ul>" +
+            "</div>"
+    });
+
+    //第一个组件
+    Vue.component("diy-title",{
+        props: ["title"],
+        template: "<div>{{title}}</div>"           //这里的div就插入到了slot中
+    });
+
+    Vue.component("diy-item",{
+        props: ["item","i"],
+        template: "<li>{{i}}------{{item}}<button @click='remove'>delete</button></li>",            //这里的item就插入到了item中
+        methods: {
+            remove: function (i) {
+                //这个emit用来分发事件,第一个参数是自定义事件名
+                this.$emit('remove',i);
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            title: "阿狗你怎么了",
+            items: ["Java这门课","分布式等"]
+        },
+        methods: {
+            removeItems: function (j) {
+                //这里有一个方法,splice,可以对数组元素进行删除增加
+                this.items.splice(j,1);//表示在下标index开始删除一个元素
+                // alert("sdcw");
+                // this.items.splice(j,2,"ag","洛克");//表示删除后在添加两个元素
+            }
+        }
+    });
+</script>
+</body>
+</html>
