@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import login from '../views/login'
 import main from '../views/main'
+import notFound from '../views/notFound'
 
 
 //使用Vue的路由
@@ -10,6 +11,8 @@ Vue.use(Router);
 
 //定义导出的路由
 export default new Router({
+  // 我们可以设置去掉#
+  mode: "history",
   //这个routes不能写错
   routes: [
     {
@@ -28,6 +31,10 @@ export default new Router({
     {
       path: "/goHome",
       redirect: "/main"
+    },
+    {
+      path: "*",
+      component: notFound
     }
   ]
 });
